@@ -1,0 +1,54 @@
+.card {
+  position: relative;
+  height: 116px;
+  width: 100px;
+  margin: 0.7rem;
+  perspective: 1000px;
+}
+
+.card .innerCard {
+  transform-style: 'preserve-3d';
+}
+
+.card img {
+  width: 100%;
+  display: block;
+  border-radius: 6px;
+  height: 116px;
+  width: 100px;
+  backface-visibility: hidden;
+  -webkit-backfacevisibility: 'hidden';
+}
+
+.card .front {
+  transform: rotateY(90deg);
+  transition: all ease-in 0.2s;
+  position: absolute;
+}
+
+.flipped .front {
+  transform: rotateY(0deg);
+  transition-delay: 0.2s;
+}
+
+.card .back {
+  transition: all ease-in 0.2s;
+  transition-delay: 0.2s;
+}
+
+.flipped .back {
+  transform: rotateY(90deg);
+  transition-delay: 0s;
+}
+
+@media only screen and (max-width: 500px) {
+  .card {
+    height: 58px;
+    width: 50px;
+  }
+
+  .card img {
+    height: 58px;
+    width: 50px;
+  }
+}
