@@ -9,11 +9,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import Logo from '../../assets/heroLogo.png';
+import Logo from '../../assets/img/heroLogo.png';
 import styled from '@emotion/styled/macro';
 import { Link } from 'react-router-dom';
+import { SearchForm } from '../SeachForm';
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar: React.FC = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<
     (EventTarget & HTMLButtonElement) | null
   >(null);
@@ -39,14 +40,23 @@ const ResponsiveAppBar = () => {
   return (
     <AppBar position='static'>
       <Container maxWidth='xl'>
-        <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
+        <Toolbar
+          disableGutters
+          sx={{
+            justifyContent: 'space-between',
+            flexDirection: { xs: 'column', md: 'row' },
+          }}
+        >
           <Box
             component='img'
             src={Logo}
             alt='logo'
-            sx={{ height: '40px', width: '40px' }}
+            sx={{
+              height: '40px',
+              width: '40px',
+              margin: { xs: '0.5rem', md: '0' },
+            }}
           />
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
             variant='h6'
             noWrap
@@ -66,7 +76,15 @@ const ResponsiveAppBar = () => {
             SUPERHERO APP
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'flex', md: 'none' },
+              flexDirection: { xs: 'row-reverse' },
+              alignItems: 'center',
+              marginBottom: { xs: '0.6rem', md: '0' },
+            }}
+          >
             <IconButton
               size='large'
               aria-label='account of current user'
@@ -95,17 +113,23 @@ const ResponsiveAppBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              <Link to='teamSection'>
+              <Link to='/minigame' style={{ textDecoration: 'none' }}>
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign='center'>Minijuego</Typography>
+                </MenuItem>
+              </Link>
+              <Link to='/teamSection' style={{ textDecoration: 'none' }}>
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign='center'>Chequear Equipo</Typography>
                 </MenuItem>
               </Link>
-              <Link to='/'>
+              <Link to='/' style={{ textDecoration: 'none' }}>
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign='center'>Inicio</Typography>
                 </MenuItem>
               </Link>
             </Menu>
+            <SearchForm />
           </Box>
 
           <Box
@@ -115,14 +139,20 @@ const ResponsiveAppBar = () => {
               flexDirection: 'row-reverse',
             }}
           >
-            <Link to='/'>
+            <Link to='/' style={{ textDecoration: 'none' }}>
               <NavButton onClick={handleCloseNavMenu}>Inicio</NavButton>
             </Link>
-            <Link to='/teamSection'>
+            <Link to='/teamSection' style={{ textDecoration: 'none' }}>
               <NavButton onClick={handleCloseNavMenu} sx={{ outline: 'none' }}>
                 Chequear Equipo
               </NavButton>
             </Link>
+            <Link to='/minigame' style={{ textDecoration: 'none' }}>
+              <NavButton onClick={handleCloseNavMenu} sx={{ outline: 'none' }}>
+                Minigame
+              </NavButton>
+            </Link>
+            <SearchForm />
           </Box>
         </Toolbar>
       </Container>
