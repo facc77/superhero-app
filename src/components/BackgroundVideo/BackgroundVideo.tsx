@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-import Background from '../../assets/background.mp4';
+import Background from '../../assets/videos/background.mp4';
 
 const BackgroundVideo: React.FC = () => {
   return (
