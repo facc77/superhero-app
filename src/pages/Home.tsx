@@ -28,11 +28,12 @@ const Home = () => {
               color: '#fff',
               fontFamily: 'Bebas Neue',
               fontSize: { lg: '42px', xs: '32px' },
+              textAlign: 'center',
             }}
           >
             Crea el mejor equipo de héroes y villanos
           </Typography>
-          <Link to='teamSection'>
+          <Link to='teamSection' style={{ textDecoration: 'none' }}>
             <Button
               sx={{
                 fontFamily: 'Bebas Neue',
