@@ -3,4 +3,11 @@ declare module '*.mp4' {
   export default src;
 }
 
+declare module '*.mp3' {
+  const value: any;
+  export default value;
+}
+
 declare module '*.png';
+
+declare module 'howler';
