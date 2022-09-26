@@ -1,107 +1,87 @@
 import React from 'react';
 import useFetch from '../hooks/useFetch';
-import { Typography, Box } from '@mui/material';
+import Background from '../assets/img/comic-background.jpg';
+import { Typography, Box, CircularProgress } from '@mui/material';
 import { Navbar } from '../components/Navbar';
-import Background from '../assets/comic-background.jpg';
-import { HeroCard } from '../components/HeroCard';
+import { useAppSelector } from '../app/hooks';
+import { Pagination } from '../components/Pagination';
 
 const url = process.env.REACT_APP_API_URL as string;
 const key = process.env.REACT_APP_API_KEY as string;
 
-/* interface Hero {
-  id: string;
-  name: string;
-  gender: string;
-  race: string;
-  image: { url: string };
-  height: [string, string];
-  weight: [string, string];
-  'eye-color': string;
-  'hair-color': string;
-} */
-
-interface Hero {
-  appearance: {
-    'eye-color': string;
-    'hair-color': string;
-    gender: string;
-    height: [string, string];
-    weight: [string, string];
-    race: string;
-  };
-  biography: {
-    aliases: string[];
-    aligment: string;
-    'alter-egos': string;
-    'first-appearance': string;
-    'full-name': string;
-    'place-of-birth': string;
-    publisher: string;
-  };
-  connections: {
-    'group-affiliation': string;
-    relatives: string;
-  };
-  id: string;
-  name: string;
-  image?: { url: string } | null;
-  powerstats: {
-    combat: string;
-    durability: string;
-    intelligence: string;
-    power: string;
-    speed: string;
-    strength: string;
-  };
-  work: {
-    occupation: string;
-    base: string;
-  };
-}
-
 const SearchResults = () => {
-  const search = window.localStorage.getItem('search');
-  const { data, error } = useFetch(url, key, search);
+  const search = useAppSelector((state) => state.heroes.search);
+  const { data, loading, error } = useFetch(url, key, search);
 
-  console.log(data, error);
   return (
     <Box sx={{ overflowX: 'hidden' }}>
       <Navbar />
-      <Box
-        sx={{
-          height: '100vh',
-          width: '100vw',
-          background: `url(${Background})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
+      {loading ? (
         <Box
           sx={{
-            marginTop: '3rem',
-            backgroundColor: '#fff',
-            height: '5rem',
-            borderRadius: '5px',
-          }}
-        >
-          <Typography>Search Results</Typography>
-        </Box>
-        <Box
-          sx={{
+            height: '150vh',
+            width: '100vw',
+            background: `url(${Background})`,
+            backgroundRepeat: 'repeat',
+            backgroundSize: 'cover',
             display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
           }}
         >
-          {data?.results &&
-            data.results.map((hero: Hero) => {
-              return <HeroCard key={hero.id} hero={hero} team={false} />;
-            })}
+          <CircularProgress sx={{ marginTop: '4rem', color: '#fff' }} />
         </Box>
-      </Box>
+      ) : (
+        <Box
+          sx={{
+            height:
+              data?.results?.length > 0
+                ? data?.results?.length > 3
+                  ? '220vh'
+                  : '100vh'
+                : '150vh',
+            width: '100vw',
+            background: `url(${Background})`,
+            backgroundRepeat: 'repeat',
+            backgroundSize: 'cover',
+            display: 'flex',
+            alignItems: 'center',
+            flexDirection: 'column',
+          }}
+        >
+          {data?.results?.length > 0 ? (
+            <>
+              <Typography
+                sx={{
+                  marginTop: '2.2rem',
+                  color: '#fff',
+                  fontFamily: 'Bebas Neue',
+                  fontSize: { lg: '42px', xs: '32px' },
+                }}
+              >
+                Search Results:
+              </Typography>
+
+              {data?.results && (
+                <>
+                  <Pagination data={data.results} />
+                </>
+              )}
+            </>
+          ) : (
+            <Typography
+              sx={{
+                marginTop: '4rem',
+                color: '#fff',
+                fontFamily: 'Bebas Neue',
+                fontSize: { lg: '42px', xs: '32px' },
+              }}
+            >
+              No se encontraron resultados
+            </Typography>
+          )}
+        </Box>
+      )}
     </Box>
   );
 };
