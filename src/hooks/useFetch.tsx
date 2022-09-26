@@ -10,15 +10,23 @@ export type TApiResponse = {
 const useFetch = (
   url: string,
   key: string,
-  search: string | null,
+  search: string | number | null,
 ): TApiResponse => {
   const [data, setData] = useState<any>();
   const [error, setError] = useState<any>();
   const [loading, setLoading] = useState<boolean>(false);
-  const completeUrl = `${url}/${key}/search/${search}/`;
+  const completeUrl =
+    typeof search === 'string'
+      ? `${url}/${key}/search/${search}/`
+      : `${url}/${key}/${search}/`;
 
   useEffect(() => {
+    if (search === null) {
+      return;
+    }
+
     const getAPIData = () => {
+      setLoading(true);
       axios
         .get(completeUrl)
         .then((res) => {
