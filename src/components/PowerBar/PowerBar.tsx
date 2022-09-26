@@ -1,6 +1,5 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import type { ChartData, ChartOptions } from 'chart.js';
 import { CategoryScale } from 'chart.js';
 import Chart from 'chart.js/auto';
 Chart.register(CategoryScale);
@@ -14,18 +13,12 @@ interface PowerBarProps {
   strength: string;
 }
 
-interface LineProps {
-  options: ChartOptions<'bar'>;
-  data: ChartData<'bar'>;
-}
-
 const PowerBar: React.FC<PowerBarProps> = (powerStats) => {
   const { intelligence, durability, combat, power, speed, strength } =
     powerStats;
 
   return (
     <div className={`statsContainer `}>
-      {/* ${heroTeam ? "cardTeam" : null} */}
       <Bar
         data={{
           labels: [
@@ -72,20 +65,6 @@ const PowerBar: React.FC<PowerBarProps> = (powerStats) => {
         options={{
           indexAxis: 'y',
           maintainAspectRatio: false,
-          /* scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: true,
-                },
-              },
-            ],
-          },
-          legend: {
-            labels: {
-              font: { size: 50 },
-            },
-          },  */
         }}
       ></Bar>
     </div>
