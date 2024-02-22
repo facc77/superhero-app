@@ -1,20 +1,20 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Navbar } from '../components/Navbar';
-import { Typography, Box, Container, Button } from '@mui/material';
-import Background from '../assets/img/comic-background.jpg';
-import { GameCard } from '../components/GameCard';
-import CaptainAmerica from '../assets/img/captainAmerica.jpg';
-import Hulk from '../assets/img/hulk.jpg';
-import IronMain from '../assets/img/ironman.jpg';
-import HawkEye from '../assets/img/hawkeye.jpg';
-import SpiderMan from '../assets/img/spiderMan.jpg';
-import Thor from '../assets/img/thor.jpg';
-import Timer from '../components/Timer/Timer';
-import { toast } from 'react-toastify';
-import { Howl } from 'howler';
-import hitSound from '../assets/sounds/hit.mp3';
-import winSound from '../assets/sounds/win.mp3';
-import gameSound from '../assets/sounds/gameMusic.mp3';
+import React, { useEffect, useMemo, useState } from "react";
+import { Navbar } from "../components/Navbar";
+import { Typography, Box, Container, Button } from "@mui/material";
+import Background from "../assets/img/comic-background.webp";
+import { GameCard } from "../components/GameCard";
+import CaptainAmerica from "../assets/img/captainAmerica.jpg";
+import Hulk from "../assets/img/hulk.jpg";
+import IronMain from "../assets/img/ironman.jpg";
+import HawkEye from "../assets/img/hawkeye.jpg";
+import SpiderMan from "../assets/img/spiderMan.jpg";
+import Thor from "../assets/img/thor.jpg";
+import Timer from "../components/Timer/Timer";
+import { toast } from "react-toastify";
+import { Howl } from "howler";
+import hitSound from "../assets/sounds/hit.mp3";
+import winSound from "../assets/sounds/win.mp3";
+import gameSound from "../assets/sounds/gameMusic.mp3";
 
 type Card = {
   id: number;
@@ -129,32 +129,32 @@ const Minigame = () => {
     <div>
       <Box
         sx={{
-          height: '100vh',
-          width: '100%',
+          height: "100vh",
+          width: "100%",
           background: `url(${Background})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
         }}
       >
         <Navbar />
         <Container
           sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <Typography
             sx={{
-              color: '#fff',
-              fontFamily: 'Bebas Neue',
-              fontSize: { lg: '42px', xs: '32px' },
-              textAlign: 'center',
-              marginTop: '2.5rem',
-              width: '50%',
-              backgroundColor: 'rgb(0,0,0,0.4)',
-              borderRadius: '4px',
+              color: "#fff",
+              fontFamily: "Bebas Neue",
+              fontSize: { lg: "42px", xs: "32px" },
+              textAlign: "center",
+              marginTop: "2.5rem",
+              width: "50%",
+              backgroundColor: "rgb(0,0,0,0.4)",
+              borderRadius: "4px",
             }}
           >
             Encuentra los pares
@@ -168,13 +168,13 @@ const Minigame = () => {
           />
           <Button
             sx={{
-              fontFamily: 'Bebas Neue',
-              border: '2px solid #fff',
-              boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-              backdropFilter: 'blur(35px)',
-              borderRadius: '6px',
-              color: '#fff',
-              fontSize: '16px',
+              fontFamily: "Bebas Neue",
+              border: "2px solid #fff",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              backdropFilter: "blur(35px)",
+              borderRadius: "6px",
+              color: "#fff",
+              fontSize: "16px",
             }}
             onClick={mixCards}
           >
@@ -182,10 +182,10 @@ const Minigame = () => {
           </Button>
           <Box
             sx={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              width: { xs: '95%', md: '70%' },
-              justifyContent: 'center',
+              display: "flex",
+              flexWrap: "wrap",
+              width: { xs: "95%", md: "70%" },
+              justifyContent: "center",
             }}
           >
             {cards.map((card) => {
